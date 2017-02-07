@@ -1,5 +1,7 @@
 i.icon {
 	font-size: 2em;
+	line-height: 0.9em;
+	vertical-align: middle;
 }
 .container.main {
 	margin-top: 7.0em;
@@ -8,3 +10,4 @@ i.icon {
 #delete {
 	display: inline;
 }
+
