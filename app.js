@@ -31,9 +31,26 @@ app.get('/blogs', function(req,res){
 	});
 });
 
+app.post('/blogs', function(req,res) {
+	console.log(req.body.blog);
+	Blog.create(req.body.blog, function(err,newPost) {
+		if (err) {
+			res.render('new')
+		} else {
+			res.redirect('/blogs');
+		}
+	});
+});
+
+app.get('/blogs/new', function(req,res) {
+	res.render('new');
+});
+
 app.get('/', function(req,res) {
 	res.redirect('/blogs');
 });
+
+
 
 
 // Listen
