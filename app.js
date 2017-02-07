@@ -21,6 +21,7 @@ var Blog = mongoose.model('Blog', blogSchema);
 
 
 // Rest Routes
+//INDEX
 app.get('/blogs', function(req,res){
 	Blog.find({}, function(err,blogs) {
 		if(err) {
@@ -30,9 +31,8 @@ app.get('/blogs', function(req,res){
 		}
 	});
 });
-
+// CREATE
 app.post('/blogs', function(req,res) {
-	console.log(req.body.blog);
 	Blog.create(req.body.blog, function(err,newPost) {
 		if (err) {
 			res.render('new')
@@ -42,10 +42,22 @@ app.post('/blogs', function(req,res) {
 	});
 });
 
+
+//NEW
 app.get('/blogs/new', function(req,res) {
 	res.render('new');
 });
-
+//SHOW
+app.get('/blogs/:id', function(req,res) {
+	Blog.findById(req.params.id, function(err,found) {
+		if(err) {
+			res.redirect('/blogs');
+		} else {
+			res.render('show', {blog: found});
+		}
+	});
+});
+//REDIRECTING TO INDEX
 app.get('/', function(req,res) {
 	res.redirect('/blogs');
 });
